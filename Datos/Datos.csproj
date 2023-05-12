@@ -84,6 +84,7 @@
     <Compile Include="cls_Conexion.cs" />
     <Compile Include="cls_ConsultarCliente.cs" />
     <Compile Include="cls_ConsultarProducto.cs" />
+    <Compile Include="cls_Facturacion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

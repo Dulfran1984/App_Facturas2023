@@ -41,5 +41,50 @@ namespace Presentacion
                 }
             }
         }
+        private void fnt_CalcularSubtotal()
+        {
+            double suma = 0;
+            for(int i = 0; i < dtg_Productos.RowCount; i++)
+            {
+                suma += Convert.ToDouble(dtg_Productos.Rows[i].Cells[1].Value) *
+                    Convert.ToInt16(dtg_Productos.Rows[i].Cells[2].Value);
+            }
+            lbl_Subtotal.Text = Convert.ToString(suma);
+            lbl_Iva.Text = Convert.ToString(suma * 0.19);
+        }
+        private void btn_AgregarCarrito_Click(object sender, EventArgs e)
+        {
+            if (txt_Codigo.Text == "" || txt_Cantidad.Text == "")
+            {
+                MessageBox.Show("Debe ingresar codigo y cantidad del producto", "ERROR",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Boolean sw = false;
+                int posi = 0;
+                for (int i = 0; i < dtg_Productos.RowCount; i++)
+                {
+                    if(txt_Codigo.Text == Convert.ToString(dtg_Productos.Rows[i].Cells[0].Value))
+                    {
+                        posi = i;
+                        sw = true;
+                        break;
+                    }
+                }
+                if(sw == true)
+                {
+                    int cant = Convert.ToInt16(dtg_Productos.Rows[posi].Cells[2].Value);
+                    int new_cant = cant + Convert.ToInt16(txt_Cantidad.Text);
+                    dtg_Productos.Rows[posi].Cells[2].Value = new_cant;
+                    fnt_CalcularSubtotal();
+                }
+                else
+                {
+                    dtg_Productos.Rows.Add(txt_Codigo.Text, txt_Valor.Text, txt_Cantidad.Text);
+                    fnt_CalcularSubtotal();
+                }
+            }
+        }
     }
 }

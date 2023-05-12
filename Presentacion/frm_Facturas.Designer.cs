@@ -380,6 +380,7 @@
             this.btn_AgregarCarrito.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btn_AgregarCarrito.TabIndex = 29;
             this.btn_AgregarCarrito.TabStop = false;
+            this.btn_AgregarCarrito.Click += new System.EventHandler(this.btn_AgregarCarrito_Click);
             // 
             // frm_Facturas
             // 
