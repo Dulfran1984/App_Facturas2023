@@ -103,6 +103,14 @@ namespace Presentacion
                     Convert.ToDouble(lbl_Iva.Text), 
                     Convert.ToDouble(lbl_Total.Text));
                 lbl_Factura.Text = Convert.ToString(obj_Facturar.getUltimaFactura());
+                for(int i = 0; i< dtg_Productos.RowCount; i++)
+                {
+                    obj_Facturar.fnt_det_Facturar(
+                        Convert.ToInt16(lbl_Factura.Text),
+                        Convert.ToString(dtg_Productos.Rows[i].Cells[0].Value),
+                        Convert.ToDouble(dtg_Productos.Rows[i].Cells[1].Value),
+                        Convert.ToInt16(dtg_Productos.Rows[i].Cells[2].Value));
+                }
             }
         }
     }

@@ -37,21 +37,14 @@ namespace Datos
         }
         public void fnt_registrar_Det_factura(int factura,string cod_prod, double valor, int cant)
         {
-            try
-            {
-                string comando = "insert into tbl_det_tbl_facturas values " +
-                "(@FKN_Factura_tbl_facturas,@FKCodigo_tbl_productos,@Valor_unitario,@Cantidad)";
-                MySqlCommand cmd = new MySqlCommand(comando, obj_conexion.conex);
-                cmd.Parameters.AddWithValue("@FKN_Factura_tbl_facturas", factura);
-                cmd.Parameters.AddWithValue("@FKCodigo_tbl_productos", cod_prod);
-                cmd.Parameters.AddWithValue("@Valor_unitario", valor);
-                cmd.Parameters.AddWithValue("@Cantidad", cant);
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception)
-            {
-                this.str_msn = "Problemas al generar factura";
-            }
+            obj_conexion.fnt_conectar();
+            String consulta = "insert into tbl_det_tbl_facturas(FKN_Factura_tbl_facturas," +
+                "FKCodigo_tbl_productos,Valor_unitario,Cantidad) " +
+                "values ('" + factura + "', '"+cod_prod+ "', '"+valor + "','" + cant + "')";
+            MySqlCommand comando = new MySqlCommand(consulta, obj_conexion.conex);
+            MySqlDataReader lectura = comando.ExecuteReader();
+            obj_conexion.fnt_Desconectar();
+            consultarUltimaFactura();
         }
         public int getUltimaFactura() { return this.int_ultima; }
     }
