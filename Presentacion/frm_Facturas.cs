@@ -51,6 +51,8 @@ namespace Presentacion
             }
             lbl_Subtotal.Text = Convert.ToString(suma);
             lbl_Iva.Text = Convert.ToString(suma * 0.19);
+            lbl_Total.Text = Convert.ToString(Convert.ToDouble(lbl_Subtotal.Text) + 
+                Convert.ToDouble(lbl_Iva.Text));
         }
         private void btn_AgregarCarrito_Click(object sender, EventArgs e)
         {
