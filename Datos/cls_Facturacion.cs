@@ -10,25 +10,14 @@ namespace Datos
         private string str_msn;
         private int int_ultima;
         cls_Conexion obj_conexion = new cls_Conexion();
-        public void fnt_Registrar_Enc_Factura(string id_cliente,float subtotal,float iva, float total)
+        public void fnt_Registrar_Enc_Factura(string id_cliente, double subtotal, double iva, double total)
         {
-            try
-            {
-                string comando = "insert into tbl_facturas values " +
-                "(@FKId_tbl_clientes,current_date(),@Subtotal,@Iva,@Total)";
-                MySqlCommand cmd = new MySqlCommand(comando, obj_conexion.conex);
-                cmd.Parameters.AddWithValue("@FKCodigo_tbl_clientes", id_cliente);
-                cmd.Parameters.AddWithValue("@Subtotal", subtotal);
-                cmd.Parameters.AddWithValue("@Iva", iva);
-                cmd.Parameters.AddWithValue("@Total", total);
-                cmd.ExecuteNonQuery();
-                str_msn = "Factura generada con éxito";
-                consultarUltimaFactura();
-            }
-            catch (Exception)
-            {
-                this.str_msn = "Problemas al generar factura";
-            }
+            obj_conexion.fnt_conectar();
+            String consulta = "insert into tbl_registros(Numero_Semana,Cantidad,Yli,Yls,Severidad,Fecha,hora,FKUsuario_tbl_usuarios,FKCodigo_tbl_finca,Latitud,Longitud,Observaciones) values ('" + cbx_Semana.SelectedItem + "','" + txt_Cantidad.Text + "','" + txt_Yli.Text + "','" + txt_Yls.Text + "','" + txt_Severidad.Text + "',current_date(),current_time(),'" + lbl_Usuario.Text + "','" + cbx_Fincas.SelectedValue + "','" + lbl_Latitud.Text + "','" + lbl_Longitud.Text + "','" + txt_Observaciones.Text + "')";
+            MySqlCommand comando = new MySqlCommand(consulta, obj_conexion.conex);
+            MySqlDataReader lectura = comando.ExecuteReader();
+            obj_conexion.fnt_Desconectar();
+            consultarUltimaFactura();
         }
         public void consultarUltimaFactura()
         {
@@ -45,7 +34,7 @@ namespace Datos
             }
             obj_Conectar.fnt_Desconectar();
         }
-        public void fnt_registrar_Det_factura(int factura,string cod_prod, float valor, int cant)
+        public void fnt_registrar_Det_factura(int factura,string cod_prod, double valor, int cant)
         {
             try
             {

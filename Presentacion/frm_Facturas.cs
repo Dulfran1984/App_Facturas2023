@@ -88,5 +88,22 @@ namespace Presentacion
                 }
             }
         }
+
+        private void btn_Factura_Click(object sender, EventArgs e)
+        {
+            if (txt_documento.Text == "" || txt_Nombre.Text == "" || txt_direccion.Text == "")
+            {
+                MessageBox.Show("Debe ingresar los valores requeridos", "ERROR",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else { 
+                cls_Facturacion obj_Facturar = new cls_Facturacion();
+                obj_Facturar.fnt_Facturar(txt_documento.Text, 
+                    Convert.ToDouble(lbl_Subtotal.Text), 
+                    Convert.ToDouble(lbl_Iva.Text), 
+                    Convert.ToDouble(lbl_Total.Text));
+                lbl_Factura.Text = Convert.ToString(obj_Facturar.getUltimaFactura());
+            }
+        }
     }
 }
