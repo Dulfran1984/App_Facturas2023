@@ -14,7 +14,7 @@ namespace Datos
         {
             obj_conexion.fnt_conectar();
             String consulta = "insert into tbl_facturas(FKId_tbl_clientes,Fecha,Subtotal,Iva,Total) " +
-                "values ('" + id_cliente + "', current_date() + '"+subtotal+ "','" + iva + "','" + total + "')";
+                "values ('" + id_cliente + "', current_date(), '"+subtotal+ "','" + iva + "','" + total + "')";
             MySqlCommand comando = new MySqlCommand(consulta, obj_conexion.conex);
             MySqlDataReader lectura = comando.ExecuteReader();
             obj_conexion.fnt_Desconectar();
