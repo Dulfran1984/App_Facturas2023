@@ -13,7 +13,8 @@ namespace Datos
         public void fnt_Registrar_Enc_Factura(string id_cliente, double subtotal, double iva, double total)
         {
             obj_conexion.fnt_conectar();
-            String consulta = "insert into tbl_registros(Numero_Semana,Cantidad,Yli,Yls,Severidad,Fecha,hora,FKUsuario_tbl_usuarios,FKCodigo_tbl_finca,Latitud,Longitud,Observaciones) values ('" + cbx_Semana.SelectedItem + "','" + txt_Cantidad.Text + "','" + txt_Yli.Text + "','" + txt_Yls.Text + "','" + txt_Severidad.Text + "',current_date(),current_time(),'" + lbl_Usuario.Text + "','" + cbx_Fincas.SelectedValue + "','" + lbl_Latitud.Text + "','" + lbl_Longitud.Text + "','" + txt_Observaciones.Text + "')";
+            String consulta = "insert into tbl_facturas(FKId_tbl_clientes,Fecha,Subtotal,Iva,Total) " +
+                "values ('" + id_cliente + "', current_date() + '"+subtotal+ "','" + iva + "','" + total + "')";
             MySqlCommand comando = new MySqlCommand(consulta, obj_conexion.conex);
             MySqlDataReader lectura = comando.ExecuteReader();
             obj_conexion.fnt_Desconectar();
