@@ -176,6 +176,7 @@
             this.txt_Codigo.Name = "txt_Codigo";
             this.txt_Codigo.Size = new System.Drawing.Size(200, 26);
             this.txt_Codigo.TabIndex = 9;
+            this.txt_Codigo.Click += new System.EventHandler(this.txt_Codigo_Click);
             this.txt_Codigo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txt_Codigo_KeyUp);
             // 
             // label5

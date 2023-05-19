@@ -113,5 +113,18 @@ namespace Presentacion
                 }
             }
         }
+        private void fnt_limpiarControles(string vacio)
+        {
+            txt_Codigo.Text = vacio;
+            txt_Descripcion.Text = vacio;
+            txt_Existencias.Text = vacio;
+            txt_Valor.Text = vacio;
+            txt_Cantidad.Text = vacio;
+            txt_Codigo.Focus();
+        }
+        private void txt_Codigo_Click(object sender, EventArgs e)
+        {
+            fnt_limpiarControles("");
+        }
     }
 }
